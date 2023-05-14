@@ -1,7 +1,8 @@
 # terraform-examples
 This is a repository for Terraform configuration examples.
 <br />
-I tried following <a href="https://cloud.google.com/docs/terraform/best-practices-for-terraforme">the best-practice code structure as recommended by Google</a>, but of course, this is not perfect so I apologize for that.
+I tried following <a href="https://cloud.google.com/docs/terraform/best-practices-for-terraform">the best-practice code structure as recommended by Google</a>, but of course, this is not perfect so I apologize for that.
+<br />
 To use this repository, we can just run:
 ```sh
 cd ./terraform-examples/${your-targeted-environment};
@@ -17,7 +18,7 @@ And then, we can initialize the Terraform repository by running this command:
 terraform -chdir=../modules/primary-vpc init;
 ```
 
-To create the plan, we can run this command:
+To create the Terraform plan for this repository, we can run this command:
 ```sh
 terraform -chdir=../modules/primary-vpc plan -out "./primary-vpc.tfplan";
 ```
