@@ -3,9 +3,12 @@ resource "aws_route_table" "primary_vpc_public_route_tbl" {
   
   vpc_id = "${aws_vpc.primary_vpc.id}"
 
-  tags = {
-    Name        = "Public Route Table | ${var.primary_vpc_name} | ${aws_vpc.primary_vpc.id}"
-  }
+  tags = merge(
+    var.additional_tags,
+    {
+      Name        = "Public Route Table | ${var.primary_vpc_name} | ${aws_vpc.primary_vpc.id}"
+    }
+  )
 
 }
 

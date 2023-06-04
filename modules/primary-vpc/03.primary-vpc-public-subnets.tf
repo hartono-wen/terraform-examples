@@ -8,8 +8,11 @@ resource "aws_subnet" "primary_vpc_public_subnets" {
   availability_zone       = "${each.key}"
   map_public_ip_on_launch = true
 
-  tags = {
-    Name        = "Public Subnet ${each.key} | ${var.primary_vpc_name} | ${aws_vpc.primary_vpc.id}"
-  }
+  tags = merge(
+    var.additional_tags,
+    {
+      Name        = "Public Subnet ${each.key} | ${var.primary_vpc_name} | ${aws_vpc.primary_vpc.id}"
+    }
+  )   
 
 }

@@ -4,10 +4,13 @@ resource "aws_route_table" "primary_vpc_private_route_tbls" {
   for_each = aws_nat_gateway.primary_vpc_public_nat_gateways
   vpc_id = "${aws_vpc.primary_vpc.id}"
 
-  tags = {
-    Name        = "Private Route Table - ${each.value.tags.AZ} | ${var.primary_vpc_name} | ${aws_vpc.primary_vpc.id}"
-    AZ          = "${each.value.tags.AZ}"
-  }
+  tags = merge(
+    var.additional_tags,
+    {
+      Name        = "Private Route Table - ${each.value.tags.AZ} | ${var.primary_vpc_name} | ${aws_vpc.primary_vpc.id}"
+      AZ          = "${each.value.tags.AZ}"
+    }
+  )
 
 }
 

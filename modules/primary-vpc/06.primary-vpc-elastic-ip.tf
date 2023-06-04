@@ -4,9 +4,12 @@ resource "aws_eip" "primary_vpc_public_nat_gw_elastic_ips" {
   for_each    = aws_subnet.primary_vpc_private_subnets
   vpc         = true
 
-  tags = {
-    Name        = "NAT EIP - ${each.value.availability_zone} | ${var.primary_vpc_name}"
-    AZ          = "${each.key}"
-  }
+  tags = merge(
+    var.additional_tags,
+    {
+      Name        = "NAT EIP - ${each.value.availability_zone} | ${var.primary_vpc_name}"
+      AZ          = "${each.key}"
+    }
+  )
 
 }
