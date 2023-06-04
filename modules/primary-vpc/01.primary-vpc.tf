@@ -3,8 +3,11 @@ resource "aws_vpc" "primary_vpc" {
   enable_dns_hostnames = true
   enable_dns_support   = true
 
-  tags = {
-    Name        = "${var.primary_vpc_name}"
-  }
+  tags = merge(
+    var.additional_tags,
+    {
+      Name        = "${var.primary_vpc_name}"
+    },
+  )
   
 }

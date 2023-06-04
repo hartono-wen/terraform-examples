@@ -5,9 +5,12 @@ resource "aws_security_group" "default_public_secgroup" {
   description = "Default security group to allow inbound/outbound from the VPC"
   vpc_id      = "${aws_vpc.primary_vpc.id}"
   
-  tags = {
-    Name        = "Default Public Security Group | ${var.primary_vpc_name}"
-  }
+  tags = merge(
+    var.additional_tags,
+    {
+      Name        = "Default Public Security Group | ${var.primary_vpc_name}"
+    }
+  )
 
 }
 
@@ -18,8 +21,6 @@ resource "aws_vpc_security_group_ingress_rule" "default_public_secgroup_ingress_
 
   description = "All of ports of this instance is accessible from public internet"
   cidr_ipv4   = "0.0.0.0/0"
-  from_port   = 0
-  to_port     = 0
   ip_protocol = "-1"
 }
 
@@ -30,7 +31,5 @@ resource "aws_vpc_security_group_egress_rule" "default_public_secgroup_egress_ru
 
   description       = "This instance can access anywhere"
   cidr_ipv4   = "0.0.0.0/0"
-  from_port   = 0
-  to_port     = 0
   ip_protocol = "-1"
 }

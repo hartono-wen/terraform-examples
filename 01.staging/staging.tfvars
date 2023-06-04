@@ -10,3 +10,6 @@ primary_vpc_public_subnet_lists = {
     "ap-southeast-3b" = "10.110.12.0/24"
     "ap-southeast-3c" = "10.110.13.0/24"
 }
+additional_tags = {
+    Environment = "staging"
+}

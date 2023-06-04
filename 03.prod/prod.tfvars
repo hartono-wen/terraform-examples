@@ -10,3 +10,6 @@ primary_vpc_public_subnet_lists = {
     "ap-southeast-3b" = "10.180.12.0/24"
     "ap-southeast-3c" = "10.180.13.0/24"
 }
+additional_tags = {
+    Environment = "PROD"
+}

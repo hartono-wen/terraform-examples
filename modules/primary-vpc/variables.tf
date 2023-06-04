@@ -29,3 +29,9 @@ variable "primary_vpc_public_subnet_lists" {
       "ap-southeast-3c" = "10.180.13.0/24"
   }
 }
+
+variable "additional_tags" {
+  default     = {}
+  description = "Additional resource tags"
+  type        = map(string)
+}
